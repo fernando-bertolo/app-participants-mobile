@@ -19,11 +19,28 @@ export const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: '#1F1E25',
-    height: 48,
     borderRadius: 5,
     color: '#FFF',
     padding: 16,
-    marginTop: 8,
-    fontSize: 16
+    fontSize: 16,
+    flex: 1
+  },
+  buttonText: {
+    color: "#FFF",
+    fontSize: 24
+  },
+  button: {
+    width: 56,
+    borderRadius: 5,
+    backgroundColor: '#31CF67',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  form: {
+    width: '100%',
+    flexDirection: 'row',
+    gap: 12,
+    marginTop: 36,
+    marginBottom: 42
   }
 })
