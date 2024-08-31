@@ -2,15 +2,37 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  FlatList
 } from "react-native";
 import { styles } from "./styles"
 import { Participant } from "../../components/Participant";
 
 export default function Home() {
 
+  const participants = [
+    'Fernando',
+    'Ana Julia',
+    'Jully',
+    'Sueli',
+    'Fernando Bertolo',
+    'Valentina',
+    'Rafa',
+    'Jeca',
+    'Maike',
+    'Leninha',
+    'Nina',
+    'Bebel',
+    'Caramelo',
+    'Chuck',
+  ];
+
   function handleParticipantAdd() {
     console.log('Clique')
+  }
+
+  function handleParticipantRemove(nomeParticipant: string) {
+    console.log(`Remove o ${nomeParticipant}`);
   }
 
   return (
@@ -41,8 +63,25 @@ export default function Home() {
         </TouchableOpacity>
       </View>
 
-      <Participant/>
-      <Participant/>
+      <FlatList 
+        data={participants}
+        keyExtractor={item => item}
+        renderItem={({ item }) => (
+          <Participant 
+            key={item} 
+            name={item} 
+            onRemove={() => handleParticipantRemove(item)} 
+          />
+        )}
+        showsVerticalScrollIndicator={false} // Esconde barra de rolagem
+        ListEmptyComponent={() => (
+          <Text style={styles.listEmptyText}>
+            Nenhum participante
+          </Text>
+        )}
+      />
+
+
     </View>
   )
 }
