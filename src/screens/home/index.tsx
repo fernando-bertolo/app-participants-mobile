@@ -19,14 +19,15 @@ export default function Home() {
       return Alert.alert("Participante existe", "Já existe um participante na lista com esse nome")
     }
     setParticipants(prevState => [...prevState, participantName]);
-    console.log(participants);
+    setParticipantName('');
   }
 
   function handleParticipantRemove(nomeParticipant: string) {
+
     Alert.alert('Remover', `Deseja remover o participante ${nomeParticipant}?`, [
       {
         text: 'Sim',
-        onPress: () => Alert.alert("Deletado!")
+        onPress: () => setParticipants(prevState => prevState.filter(participant => participant !== nomeParticipant))
       }, {
         text: 'Não',
         style: 'cancel'
@@ -50,7 +51,8 @@ export default function Home() {
           placeholder="Nome do participante"
           placeholderTextColor="#6B6B6B"
         // keyboardType="number-pad"
-          onChangeText={(event) => console.log(event)}
+          onChangeText={text => setParticipantName(text)}
+          value={participantName}
         />
 
         <TouchableOpacity
@@ -67,7 +69,7 @@ export default function Home() {
         data={participants}
         keyExtractor={item => item}
         renderItem={({ item }) => (
-          <Participant 
+          <Participant
             key={item} 
             name={item} 
             onRemove={() => handleParticipantRemove(item)} 
